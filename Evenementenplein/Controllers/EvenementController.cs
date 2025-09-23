@@ -30,9 +30,14 @@ namespace Evenementenplein.Controllers
 
         public IActionResult Evenementen()
         {
+            List<EvenementenViewModel> viewModels = new List<EvenementenViewModel>();
             List<EvenementDTO> evenementenDTOs = evenementService.Ontvang10Evenementen();
-
-            List<EvenementenViewModel> viewModels = evenementMapper.ConvertDTOsNaarModel(evenementenDTOs);
+            foreach(EvenementDTO evenementDTO in evenementenDTOs)
+            {
+                LocatieDTO locatieDTO = locatieService.OntvangLocatie(evenementDTO.LocatieID);
+                EvenementenViewModel viewModel = evenementMapper.ConvertDTOsNaarModel(evenementDTO, locatieDTO);
+                viewModels.Add(viewModel);
+            }
 
             return View(viewModels);
         }

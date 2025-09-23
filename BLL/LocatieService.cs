@@ -25,5 +25,11 @@ namespace BLL
             dto.Adres = adres;
             return dal.VoegLocatieToeMetID(dto);
         }
+
+        public LocatieDTO OntvangLocatie(int locatieID)
+        {
+            LocatieDTO locatieDTO = dal.OntvangLocatie(locatieID);
+            return locatieDTO;
+        }
     }
 }

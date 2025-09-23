@@ -8,9 +8,10 @@ namespace Evenementenplein.ViewModels
 
         public string Naam { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
-        public DateTime BeginDatum { get; set; }
-        public DateTime EindDatum { get; set; }
+        public string BeginDatum { get; set; } = string.Empty;
+        public string EindDatum { get; set; } = string.Empty;
 
-        public Locatie Locatie { get; set; } = new Locatie();
+        public string LocatieNaam { get; set; } = string.Empty;
+        public string LocatieAdres { get; set; } = string.Empty;
     }
 }

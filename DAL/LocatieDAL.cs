@@ -38,5 +38,29 @@ namespace DAL
                 return locationID;
             }
         }
+
+        public LocatieDTO OntvangLocatie(int ID)
+        {
+            LocatieDTO locatieDTO = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string sqlString = @"SELECT Naam, Adres FROM LOCATIE WHERE ID = @ID";
+                SqlCommand cmd = new SqlCommand( sqlString, connection);
+                cmd.Parameters.AddWithValue("@ID", ID);
+                connection.Open();
+                using(SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        locatieDTO = new LocatieDTO()
+                        {
+                            Naam = reader["Naam"].ToString(),
+                            Adres = reader["Adres"].ToString()
+                        };
+                    }
+                }
+            }
+            return locatieDTO;
+        }
     }
 }

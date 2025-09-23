@@ -1,5 +1,7 @@
-﻿using DAL;
+﻿using Contracts;
+using DAL;
 using Evenementenplein.Models;
+using Evenementenplein.Models.Enums;
 using Evenementenplein.ViewModels;
 using EvenementenPleinMapper;
 
@@ -7,19 +9,19 @@ namespace Evenementenplein.Mapper
 {
     public class EvenementMapper
     {
-        public List<EvenementenViewModel> ConvertDTOsNaarModel(List<EvenementDTO> evenementDTOs)
+        public EvenementenViewModel ConvertDTOsNaarModel(EvenementDTO evenementDTO, LocatieDTO locatieDTO)
         {
-            List<EvenementenViewModel> viewModels = new List<EvenementenViewModel>();
-            foreach(EvenementDTO dto in evenementDTOs)
+            EvenementenViewModel viewModel = new EvenementenViewModel()
             {
-                EvenementenViewModel viewModel = new EvenementenViewModel()
-                {
-                    Naam = dto.Naam
-
-                };
-                viewModels.Add(viewModel);
-            }
-            return viewModels;
+                Naam = evenementDTO.Naam,
+                Type = ((EvenementType)evenementDTO.EvenementType).ToString(),
+                LocatieNaam = locatieDTO.Naam,
+                LocatieAdres = locatieDTO.Adres,
+                BeginDatum = evenementDTO.BeginDatum.ToShortDateString(),
+                EindDatum = evenementDTO.EindDatum.ToShortDateString(),
+            };
+            
+            return viewModel;
         }
 
         public EvenementDTO ConvertModelToDTO(Evenement model, int locatieID)
@@ -28,7 +30,7 @@ namespace Evenementenplein.Mapper
                 Naam = model.Naam,
                 Beschrijving = model.Beschrijving,
                 Capaciteit = model.Capaciteit,
-                Type = Convert.ToInt32(model.Type),
+                EvenementType = Convert.ToInt32(model.Type),
                 LocatieID = locatieID,
                 BeginDatum = model.BeginDatum,
                 EindDatum = model.EindDatum,

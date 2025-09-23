@@ -27,7 +27,7 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@Naam", dto.Naam);
                 cmd.Parameters.AddWithValue("@Beschrijving", dto.Beschrijving);
                 cmd.Parameters.AddWithValue("@Capaciteit", dto.Capaciteit);
-                cmd.Parameters.AddWithValue("@EvenementType", dto.Type);
+                cmd.Parameters.AddWithValue("@EvenementType", dto.EvenementType);
                 cmd.Parameters.AddWithValue("@BeginDatum", dto.BeginDatum);
                 cmd.Parameters.AddWithValue("@EindDatum", dto.EindDatum);
                 cmd.Parameters.AddWithValue("@locatieID", dto.LocatieID);
@@ -42,7 +42,7 @@ namespace DAL
             
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string sqlString = @"SELECT Id, Naam, LocatieID 
+                string sqlString = @"SELECT Id, Naam, LocatieID, EvenementType, BeginDatum, EindDatum 
                                    FROM EVENEMENT ORDER BY Id 
                                    OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY;";
                 SqlCommand cmd = new SqlCommand(sqlString, connection);
@@ -53,6 +53,9 @@ namespace DAL
                     {
                         EvenementDTO dto = new EvenementDTO();
                         dto.Naam = reader["Naam"].ToString();
+                        dto.BeginDatum = Convert.ToDateTime(reader["BeginDatum"]);
+                        dto.EindDatum = Convert.ToDateTime(reader["EindDatum"]);
+                        dto.EvenementType = Convert.ToInt32(reader["EvenementType"]);
                         dto.LocatieID = Convert.ToInt32(reader["LocatieID"]);
                         evenementDTOs.Add(dto);
                     }

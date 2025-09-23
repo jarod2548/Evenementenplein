@@ -8,6 +8,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<EvenementDAL>();
 builder.Services.AddScoped<EvenementService>();
+builder.Services.AddScoped<LocatieDAL>();
+builder.Services.AddScoped<LocatieService>();
 
 var app = builder.Build();
 

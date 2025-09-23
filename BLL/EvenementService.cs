@@ -6,16 +6,22 @@ namespace BLL
 {
     public class EvenementService
     {
-        private readonly EvenementDAL DAL;
+        private readonly EvenementDAL dal;
 
-        public EvenementService(EvenementDAL dAL)
+        public EvenementService(EvenementDAL DAL)
         {
-            DAL = dAL;
+            dal = DAL;
         }
 
         public void VoegEvenementToe(EvenementDTO dto)
         {
-            
+            dal.VoegEvenementToe(dto);
+        }
+
+        public List<EvenementDTO> Ontvang10Evenementen()
+        {
+            List<EvenementDTO> evenementDTOs = dal.Ontvang10Evenementen();
+            return evenementDTOs;
         }
     }
 }

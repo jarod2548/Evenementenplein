@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Evenementen";
+}
+@model IEnumerable<Evenementenplein.ViewModels.EvenementenViewModel>
+
+en@{
+    <div class="text-center">
+        <h1 class="display-4">Evenementen</h1>
+    </div>
+
+}
+<h2>Evenementen</h2>
+<ul>
+@foreach (var item in Model)
+{
+        <li>@item.Naam</li>
+}</ul>

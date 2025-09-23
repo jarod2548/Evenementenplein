@@ -1,0 +1,42 @@
+﻿@using Evenementenplein.Models.Enums
+
+@{
+    ViewData["Title"] = "Evenement maken";
+}
+
+@model Evenementenplein.Models.Evenement
+
+<div class="text-center">
+    <h1 class="display-4">Evenement</h1>
+    <a class="btn" asp-controller="Evenement" asp-action="MaakEvenement">Maak evenement</a>
+</div>
+<form asp-action="MaakEvenementCompleet">
+    <label>Naam</label>
+    <input class="form-control mt-4" type="text" placeholder="waterpleinen" asp-for="Naam" required/>
+    <label>Beschrijving</label>
+    <input class="form-control mt-4" type="text" placeholder="waterpleinen" asp-for="Beschrijving" required />
+    <label>locatieNaam</label>
+    <input class="form-control mt-4" type="text" placeholder="waterpleinen" asp-for="Locatie.Naam" required />
+    <label>locatieAdres</label>
+    <input class="form-control mt-4" type="text" placeholder="waterpleinen" asp-for="Locatie.Adres" required />
+    <label>Type</label>
+    <select class="form-control mt-4" asp-for="Type" required>
+        @foreach (EvenementType type in Enum.GetValues(typeof(EvenementType)))
+        {
+            <option value="@type">@type.ToString().Replace("_", " ")</option>
+        }
+    </select>
+    <label>Max. aantal personen</label>
+    <input class="form-control mt-4" type="number" placeholder="10" asp-for="Capaciteit" required />
+    <div>
+        @Html.LabelFor(m => m.BeginDatum)
+        @Html.TextBoxFor(m => m.BeginDatum, new { @type = "date", required = "required" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.EindDatum)
+        @Html.TextBoxFor(m => m.EindDatum, new { @type = "date", required = "required" })
+    </div>
+
+    <button class="btn mt-4" type="submit">Maak</button>
+</form>
+

@@ -21,10 +21,7 @@ namespace Evenementenplein.Controllers
             return View();
         }
 
-        public IActionResult EvenementForm()
-        {
-            return View();
-        }
+        
         
 
         public IActionResult Privacy()

@@ -15,8 +15,4 @@
     <ProjectReference Include="..\EvenementenPleinMapper\Contracts.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\NewFolder\" />
-  </ItemGroup>
-
 </Project>

@@ -2,17 +2,14 @@
 {
     public class EvenementDTO
     {
-        public int Id { get; private set; }
-        public string Naam { get; private set; } = string.Empty;
-        public string Beschrijving { get; private set; } = string.Empty;
-        public int Capaciteit { get; private set; }
-        public DateTime BeginDatum { get; private set; }
-        public DateTime EindDatum { get; private set; }
+        public int Id { get;  set; }
+        public string Naam { get;  set; } = string.Empty;
+        public string Beschrijving { get; set; } = string.Empty;
+        public int Capaciteit { get; set; }
+        public int Type { get; set; }
+        public DateTime BeginDatum { get; set; }
+        public DateTime EindDatum { get; set; }
+        public int LocatieID { get; set; }
 
-        public EvenementDTO(string naam, string beschrijving)
-        {
-            Naam = naam;
-            Beschrijving = beschrijving;
-        }
     }
 }
